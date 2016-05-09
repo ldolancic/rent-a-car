@@ -9,7 +9,7 @@
             <thead>
                 <tr>
                     <th>User</th>
-                    <th>User ID</th>
+                    <th>User rent history</th>
                     <th>Starting time</th>
                     <th>Ending time</th>
                     <th>Price</th>
@@ -19,7 +19,7 @@
                 @foreach($rents as $rent)
                     <tr>
                         <td>{{ $rent->user->first_name }} {{ $rent->user->last_name }}</td>
-                        <td>{{ $rent->user->id }}</td>
+                        <td><a href="/user/{{ $rent->user->id }}/rent-history">View users rent history</a></td>
                         <td>{{ $rent->starting_time->toDateString() }}</td>
                         <td>{{ $rent->ending_time->toDateString() }}</td>
                         <td>{{ $rent->price }}</td>

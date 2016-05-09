@@ -24,6 +24,11 @@ class Car extends Model
         return $this->hasMany('App\Models\Rent');
     }
 
+    public function carTrackings()
+    {
+        return $this->hasMany('App\Models\CarTracking');
+    }
+
     public function coverPhoto()
     {
         return $this->photos()->where('is_cover', true)->first();

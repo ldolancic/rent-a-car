@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Rent And Drive V2</title>
+    <title>Rent And Drive</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
@@ -46,7 +47,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Rent And Drive V2
+                    Rent And Drive
                 </a>
             </div>
 
@@ -69,6 +70,10 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                @if(Auth::user() and Auth::user()->role == 'admin')
+                                    <li><a href="{{ url('/car/create') }}"><i class="fa fa-plus"></i> Add a new
+                                            car</a></li>
+                                @endif
                                 <li><a href="{{ url('/user/' . Auth::user()->id . '/rent-history') }}"><i class="fa fa-history"></i> My Rent History</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a></li>
                             </ul>

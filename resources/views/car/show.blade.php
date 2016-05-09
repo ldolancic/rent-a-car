@@ -19,7 +19,7 @@
                             <img src="/car_images/{{ $car->coverPhoto()->name }}" alt="{{ $car->brand }} {{ $car->model }} cover photo" class="img-responsive">
                         </div>
                     </div>
-                @else
+                @elseif(Auth::user() and Auth::user()->role == 'admin')
                     <a href="/car/{{ $car->id }}/edit-cover-photo" class="btn btn-primary">Add Cover Photo</a>
                 @endif
 
@@ -87,6 +87,12 @@
                                     car</a>
                             </div>
                         </div>
+                    @elseif(Auth::user() and Auth::user()->role == 'admin')
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="/car/{{ $car->id }}/rent-history" class="btn btn-primary">View rent history</a>
+                            </div>
+                        </div>
                     @endif
             </div><!-- ending col-sm-6 whole left side -->
 
@@ -94,10 +100,10 @@
                 <div class="row">
                     <div id="car-images-grid" class="grid">
                         @foreach($car->nonCoverPhotos() as $photo)
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <img src="/car_images/{{ $photo->name }}"
-                                     class=""
-                                     style="width: 100%; height: 90px; margin-bottom: 20px;"
+                                     class="img-responsive"
+                                     style="margin-bottom: 20px;"
                                 >
                             </div>
                         @endforeach

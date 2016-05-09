@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CarTracking;
 use App\Models\Rent;
 use Illuminate\Http\Request;
 use App\Models\Car;
@@ -35,5 +36,14 @@ class RentController extends Controller
         $rent->save();
 
         return redirect('/cars');
+    }
+
+    public function carTracking(Rent $rent)
+    {
+        $trackings = CarTracking::where('rent_id', $rent->id)->get();
+
+        return $trackings->toArray();
+
+        return view('rent.carTracking', compact('trackings'));
     }
 }

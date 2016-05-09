@@ -24,7 +24,8 @@ Route::resource('car', 'CarController', ['except' => ['index']]);
 
 Route::get('/rent/{car}/create', 'RentController@create');
 Route::post('/rent/{car}', 'RentController@store');
+Route::get('/rent/{rent}/car-tracking', 'RentController@carTracking');
 
 Route::get('/user/{user}/rent-history', 'UserController@rentHistory');
 
-
+Route::post('/car-tracking', 'CarTrackingController@store');
