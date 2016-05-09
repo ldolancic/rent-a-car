@@ -1,0 +1,5 @@
+.dropzone {
+    border: 2px dashed rgba(61, 36, 167, 0.7) !important;
+    padding: 33px 20px !important;
+    margin-top: 20px;
+}
