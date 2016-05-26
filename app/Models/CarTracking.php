@@ -10,10 +10,6 @@ class CarTracking extends Model
         'rent_id', 'car_id', 'latitude', 'longitude'
     ];
 
-    protected $visible = [
-        'latitude', 'longitude'
-    ];
-
     public function rent()
     {
         return $this->belongsTo('App\Models\Rent');

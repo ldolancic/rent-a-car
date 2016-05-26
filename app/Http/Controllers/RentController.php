@@ -42,8 +42,6 @@ class RentController extends Controller
     {
         $trackings = CarTracking::where('rent_id', $rent->id)->get();
 
-        return $trackings->toArray();
-
-        return view('rent.carTracking', compact('trackings'));
+        return view('carTracking.index', compact('trackings'));
     }
 }

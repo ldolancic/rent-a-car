@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use AlgoliaSearch\Laravel\AlgoliaEloquentTrait;
 
 class Car extends Model
 {
+    use AlgoliaEloquentTrait;
+
     protected $fillable = [
         'brand',
         'model',
@@ -32,6 +35,13 @@ class Car extends Model
     public function coverPhoto()
     {
         return $this->photos()->where('is_cover', true)->first();
+    }
+
+    public function getAlgoliaRecord()
+    {
+        return array_merge($this->toArray(), [
+            'cover_photo' => $this->coverPhoto()
+        ]);
     }
 
     public function nonCoverPhotos()
