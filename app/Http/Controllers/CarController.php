@@ -5,14 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Http\Requests\CarRequest;
 use Illuminate\Http\Request;
+use App\Models\CarPhoto;
 
 class CarController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => [
+            'show',
+            'search'
+        ]]);
+    }
+
     public function index()
     {
         $cars = Car::all();
 
-        return view('car.index');
+        return view('car.index', compact('cars'));
     }
 
     public function create()
@@ -38,37 +47,47 @@ class CarController extends Controller
         return view('car.rentHistory', compact(['rents', 'car']));
     }
 
+    public function search()
+    {
+        return view('car.search');
+    }
+
     public function update(CarRequest $request, Car $car)
     {
         $car->update($request->all());
 
-        return redirect('/car/' . $car->id . '/edit-cover-photo');
+        $car->processImageUpload($request, true);
+
+        $car->pushToIndex();
+
+        return redirect('/car/' . $car->id);
     }
 
     public function store(CarRequest $request)
     {
         $car = Car::create($request->all());
 
-        return redirect('/car/' . $car->id . '/edit-cover-photo');
-    }
-
-    public function editCoverPhoto(Car $car)
-    {
-        return view('car.editCoverPhoto', compact('car'));
-    }
-
-    public function storeCoverPhoto(Request $request, Car $car)
-    {
         $car->processImageUpload($request, true);
+
+        $car->pushToIndex();
 
         return redirect('/car/' . $car->id);
     }
 
-    public function uploadImage(Request $request, Car $car)
+    public function uploadPhoto(Request $request, Car $car)
     {
         $car->processImageUpload($request, false);
 
         return 'success';
+    }
+
+    public function deletePhoto(CarPhoto $carPhoto)
+    {
+        $carId = $carPhoto->car->id;
+
+        $carPhoto->delete();
+
+        return redirect('/car/'. $carId);
     }
 
 }

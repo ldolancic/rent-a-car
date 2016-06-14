@@ -13,6 +13,7 @@
                     <th>Starting time</th>
                     <th>Ending time</th>
                     <th>Price</th>
+                    <th>Status</th>
                     @if(Auth::user() and Auth::user()->role == 'admin')
                         <th>Car tracking</th>
                     @endif
@@ -26,6 +27,7 @@
                         <td>{{ $rent->starting_time->toDateString() }}</td>
                         <td>{{ $rent->ending_time->toDateString() }}</td>
                         <td>{{ $rent->price }}</td>
+                        <td>{{ $rent->status }}</td>
                         @if(Auth::user() and Auth::user()->role == 'admin')
                             <td><a href="/rent/{{ $rent->id }}/car-tracking">Track the route</a></td>
                         @endif

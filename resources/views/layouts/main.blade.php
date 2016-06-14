@@ -30,6 +30,24 @@
     <script type="text/javascript" src="/js/dataTables.bootstrap.min.js"></script>
     <script src="/js/vue.js"></script>
 
+    <script>
+        // smooth scroll
+        $(function() {
+            $('a[href*="#"]:not([href="#"])').click(function() {
+                if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                    if (target.length) {
+                        $('html, body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+
     @yield('scripts')
 </head>
 <body id="app-layout">
@@ -60,6 +78,8 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
+                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ url('/search') }}">Car Search</a></li>
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
@@ -73,8 +93,14 @@
                                 @if(Auth::user() and Auth::user()->role == 'admin')
                                     <li><a href="{{ url('/car/create') }}"><i class="fa fa-plus"></i> Add a new
                                             car</a></li>
+                                    <li><a href="{{ url('/user') }}"><i class="fa fa-user"></i> List users</a></li>
+                                    <li><a href="{{ url('/car') }}"><i class="fa fa-car"></i> List cars</a></li>
                                 @endif
-                                <li><a href="{{ url('/user/' . Auth::user()->id . '/rent-history') }}"><i class="fa fa-history"></i> My Rent History</a></li>
+                                @if(Auth::user() and Auth::user()->role != 'admin')
+                                        <li><a href="{{ url('/user/' . Auth::user()->id . '/rent-history') }}"><i class="fa fa-history"></i> My Rent History</a></li>
+                                        <li><a href="{{ url('/user/' . Auth::user()->id . '/edit') }}"><i class="fa
+                                        fa-pencil-square-o"></i> Edit my info</a></li>
+                                @endif
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a></li>
                             </ul>
                         </li>

@@ -9,7 +9,12 @@ use Illuminate\Http\Request;
 class Rent extends Model
 {
     protected $fillable = [
-        'starting_time', 'ending_time'
+        'starting_time',
+        'ending_time',
+        'additional_driver',
+        'baby_seat',
+        'child_seat',
+        'full_protection'
     ];
 
     protected $dates = [
@@ -43,7 +48,15 @@ class Rent extends Model
 
     public function calculatePrice($pricePerDay)
     {
-        $this->price = ($this->starting_time->diffInDays($this->ending_time) + 1) * $pricePerDay;
+        $numberOfDays = ($this->starting_time->diffInDays($this->ending_time) + 1);
+
+        $babySeatPrice = $this->baby_seat * 2 * $numberOfDays;
+        $childSeatPrice = $this->child_seat * 2 * $numberOfDays;
+        $additionalDriverPrice = $this->additional_driver * 3 * $numberOfDays;
+        $fullProtectionPrice = $this->full_protection * 3 * $numberOfDays;
+        $baseCarRentPrice = $pricePerDay * $numberOfDays;
+
+        $this->price = $babySeatPrice + $childSeatPrice + $additionalDriverPrice + $fullProtectionPrice + $baseCarRentPrice;
     }
 
     public function validateAvailability()

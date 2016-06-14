@@ -1,3 +1,7 @@
+/*
+    palette link: https://coolors.co/app/50514f-f25f5c-ffe066-247ba0-70c1b3
+*/
+
 * {
     font-family: 'Open Sans Condensed', sans-serif;
     letter-spacing: 0.02em;
@@ -5,12 +9,16 @@
 
 body {
     font-size: 16px;
-    color: #464141;
+    color: #50514F;
 }
 
 a {
     color: #0089FF;
     text-decoration: none;
+}
+
+label {
+    font-weight: 500;
 }
 
 .car-card a:hover,
@@ -26,8 +34,8 @@ a {
 }
 
 .navbar-default {
-    background-color: #F55757;
-    border-color: #F55757;
+    background-color: #F25F5C;
+    border-color: #F25F5C;
 }
 
 .navbar-default .navbar-brand,
@@ -43,6 +51,52 @@ a {
     padding: 23px 15px;
     font-weight: 200;
     letter-spacing: 0.04em;
+}
+
+.navbar-brand,
+.navbar-brand:hover,
+.navbar-brand:active,
+.navbar-brand:focus {
+    background-color: #50514F !important;
+}
+
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover {
+    background-color: #50514F !important;
+    color: #fff;
+}
+
+.navbar-static-top {
+    border-width: 0;
+}
+
+.navbar-default .navbar-toggle,
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:active {
+    border-color: #50514F;
+    background-color: #F25F5C;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #50514F;
+}
+
+.navbar-toggle {
+    border: 3px solid transparent;
+    border-radius: 2px;
+}
+
+@media (max-width: 767px) {
+    .navbar-nav .open .dropdown-menu > li > a,
+    .navbar-nav .open .dropdown-menu > li > a:hover {
+        color: #fff !important;
+    }
+}
+
+.dropdown-menu {
+    border: 0;
 }
 
 .car-card {
@@ -61,12 +115,145 @@ a {
 }
 
 .btn {
-    font-size: 16px;
+    font-size: 15px;
     border: 0;
+    padding: 6px 20px;
+    border-radius: 0;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+    background-color: #247BA0;
+}
+
+.btn-success,
+.btn-success:hover,
+.btn-success:hover:active,
+.btn-success:active,
+.btn-success:focus,
+.btn-success:visited
+{
+    background-color: #70C1B3;
 }
 
 .dropzone {
     border: 2px dashed rgba(61, 36, 167, 0.7) !important;
     padding: 33px 20px !important;
-    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .dropzone {
+        margin-top: 30px;
+    }
+}
+
+.auth-panel {
+    border-radius: 0;
+    border-color: #50514F;
+}
+
+.auth-panel .panel-heading {
+    background-color: #50514F;
+    color: #fff;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 16px 15px;
+}
+
+.has-error .form-control {
+    border-color: #F25F5C;
+}
+
+.has-error .help-block {
+    color: #F25F5C;
+}
+
+.grid-image:hover img {
+    opacity:0.5;
+}
+.grid-image .delete-image {
+    font-size: 20px;
+    display: none;
+    position: absolute;
+    top: 6%;
+    right: 10%;
+}
+
+.grid-image:hover .delete-image {
+    display: block;
+}
+
+.jumbotron {
+    background-image: url('/img/road4k.jpg');
+    margin-top: -40px;
+    background-size: cover;
+}
+
+@media (max-width: 2560px) {
+    .jumbotron {
+        background-image: url('/img/road2560.jpg');
+    }
+}
+
+@media (max-width: 1920px) {
+    .jumbotron {
+        background-image: url('/img/road1920.jpg');
+    }
+}
+
+@media (max-width: 1440px) {
+    .jumbotron {
+        background-image: url('/img/road1440.jpg');
+    }
+}
+
+@media (max-width: 1024px) {
+    .jumbotron {
+        background-image: url('/img/road1024.jpg');
+    }
+}
+
+@media (max-width: 768px) {
+    .jumbotron {
+        background-image: url('/img/road768.jpg');
+    }
+}
+
+.jumbotron .fa {
+    color: rgba(255,255,255,0.8);
+    font-size: 40px;
+    -webkit-animation: bounce 2s infinite ease-in-out;
+}
+
+@-webkit-keyframes bounce {
+    0%, 20%, 60%, 100%  { -webkit-transform: translateY(0); }
+    40%  { -webkit-transform: translateY(-20px); }
+    80% { -webkit-transform: translateY(-10px); }
+}
+
+
+.jumbotron .click-to-scroll-link-container,
+.jumbotron .click-to-scroll-link-container:hover {
+    bottom: 0;
+    text-decoration: none;
+    display: block;
+}
+.backgrounded-content {
+    background-color: rgba(255,255,255,0.6);
+    padding: 10px 20px;
+    margin-top: 5%;
+}
+
+.click-to-scroll,
+.click-to-scroll:hover,
+.click-to-scroll:active,
+.click-to-scroll:focus,
+.click-to-scroll:focus:active {
+    color: #fff;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 10px;
 }

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
 
-        <h3>Create a car</h3>
+        <h3>Edit a car</h3>
 
         <div class="row">
         <form class="col-sm-4" method="post" action="{{ route('car.update', ['id' => $car->id]) }}" enctype="multipart/form-data">
@@ -22,6 +22,32 @@
                        required
                        value="{{ $car->model }}"
                 >
+            </div>
+
+            <div class="form-group">
+                <label>Transmission type</label>
+                <select name="transmission" id="transmission" class="form-control">
+                    <option value="manual" @if($car->transmission == 'manual') selected @endif>Manual</option>
+                    <option value="automatic" @if($car->transmission == 'automatic') selected @endif>Automatic</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Car type</label>
+                <select name="type" id="type" class="form-control">
+                    <option value="sedan" @if($car->type == 'sedan') selected @endif>Sedan</option>
+                    <option value="MPV" @if($car->type == 'MPV') selected @endif>MPV</option>
+                    <option value="SUV" @if($car->type == 'SUV') selected @endif>SUV</option>
+                    <option value="luxury" @if($car->type == 'luxury') selected @endif>Luxury</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Fuel type</label>
+                <select name="fuel" id="fuel" class="form-control">
+                    <option value="diesel" @if($car->fuel == 'diesel') selected @endif>Diesel</option>
+                    <option value="petrol" @if($car->type == 'petrol') selected @endif>Petrol</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Number of seats</label>
@@ -48,7 +74,17 @@
                 >
             </div>
 
-            <button type="submit" class="btn btn-default">Submit</button>
+            <div class="form-group">
+                <label>Additional details</label>
+                <textarea name="additional_details" cols="30" rows="10" class="form-control">{{ $car->additional_details }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="photo">Cover photo</label>
+                <input type="file" name="photo" id="photo" class="file">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         </div>
 

@@ -12,6 +12,25 @@ use Illuminate\Support\Facades\Auth;
 
 class RentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin', ['only' => [
+            'carTracking',
+            'edit',
+            'update'
+        ]]);
+    }
+
+    public function show(Rent $rent)
+    {
+        return view('rent.show', compact('rent'));
+    }
+
+    public function edit(Rent $rent)
+    {
+        return view('rent.edit', compact('rent'));
+    }
+
     public function create(Car $car)
     {
         return view('rent.create', compact('car'));
@@ -19,7 +38,15 @@ class RentController extends Controller
 
     public function store(Car $car, Request $request)
     {
-        $rent = new Rent($request->all());
+        $data = $request->all();
+
+        foreach ($data as $item => $value) {
+            if ($value === "on") {
+                $data[$item] = true;
+            }
+        }
+
+        $rent = new Rent($data);
 
         $rent->car()->associate($car);
         $rent->user()->associate(Auth::user());
@@ -29,13 +56,43 @@ class RentController extends Controller
         // do advanced validation to check if the car has another
         // rent for our wanted date range
         if (!$rent->validateAvailability()) {
-            dd('There is another rent for this car in the wanted date range.');
+            return response('There is another rent for this car in the wanted date range.', '451');
         }
 
         // if validation passed save the rent
         $rent->save();
 
-        return redirect('/cars');
+        return redirect('/rent/' . $rent->id);
+    }
+
+    public function update(Rent $rent, Request $request)
+    {
+        $data = $request->all();
+
+        foreach ($data as $item => $value) {
+            if ($value === "on") {
+                $data[$item] = true;
+            } elseif ($value === "off") {
+                $data[$item] = false;
+            }
+        }
+
+        $car = $rent->car;
+
+        $rent->calculatePrice($car->price_per_day);
+
+        $rent->update($data);
+
+        // do advanced validation to check if the car has another
+        // rent for our wanted date range
+        // if (!$rent->validateAvailability()) {
+        //     return response('There is another rent for this car in the wanted date range.', '451');
+        // }
+
+        // if validation passed save the rent
+        $rent->save();
+
+        return redirect('/rent/' . $rent->id);
     }
 
     public function carTracking(Rent $rent)

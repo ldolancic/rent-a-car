@@ -19,6 +19,11 @@ class CreateRentsTable extends Migration
             $table->date('starting_time');
             $table->date('ending_time');
             $table->double('price');
+            $table->string('status')->default('pending'); // pending, canceled, confirmed, in_progress, finished
+            $table->boolean('additional_driver')->default(false);
+            $table->boolean('baby_seat')->default(false);
+            $table->boolean('child_seat')->default(false);
+            $table->boolean('full_protection')->default(false);
             $table->timestamps();
         });
 

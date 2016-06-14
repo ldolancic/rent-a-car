@@ -9,9 +9,8 @@ use App\Models\Car;
 
 class PagesController extends Controller
 {
-    public function landing()
+    public function homepage()
     {
-        return redirect('/cars');
-//        return view('pages.landing');
+        return view('pages.homepage');
     }
 }

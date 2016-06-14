@@ -21,6 +21,30 @@
                     {!! csrf_field() !!}
                     <input type="hidden" name="starting_time" id="starting_time">
                     <input type="hidden" name="ending_time" id="ending_time">
+
+                    <div class="checkbox">
+                        <label>
+                        <input type="checkbox" name="additional_driver">
+                            Additional driver</label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="baby_seat">
+                            Baby seat</label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="child_seat">
+                            Child seat</label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="full_protection">
+                            Full protection</label>
+                    </div>
                     <input type="submit" class="btn btn-success" value="Submit">
                 </form>
             </div>

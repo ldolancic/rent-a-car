@@ -16,9 +16,13 @@ class CreateCarsTable extends Migration
             $table->increments('id');
             $table->string('brand');
             $table->string('model');
+            $table->string('transmission');
+            $table->string('type');
+            $table->string('fuel');
             $table->integer('seats');
             $table->integer('doors');
             $table->double('price_per_day');
+            $table->text('additional_details');
             $table->timestamps();
         });
     }

@@ -12,11 +12,11 @@ $(document).ready(function() {
   var PARAMS = {
     hitsPerPage: 5,
     maxValuesPerFacet: 8,
-    disjunctiveFacets: ['brand', 'price_per_day', 'seats', 'doors']
+    disjunctiveFacets: ['brand', 'price_per_day', 'transmission', 'type', 'fuel', 'seats', 'doors']
   };
   var FACETS_SLIDER = ['price_per_day'];
-  var FACETS_ORDER_OF_DISPLAY = ['brand', 'price_per_day', 'seats', 'doors'];
-  var FACETS_LABELS = {brand: 'Brand', price_per_day: 'Price per day', seats: 'Number of seats', doors: 'Number of' +
+  var FACETS_ORDER_OF_DISPLAY = ['brand', 'price_per_day', 'transmission', 'type', 'fuel', 'seats', 'doors'];
+  var FACETS_LABELS = {brand: 'Brand', price_per_day: 'Price per day', transmission: 'Transmission', type: 'Vehicle type', fuel: 'Fuel type', seats: 'Number of seats', doors: 'Number of' +
   ' doors'};
 
   // Client + Helper initialization

@@ -14,7 +14,11 @@ class Car extends Model
         'model',
         'seats',
         'doors',
-        'price_per_day'
+        'transmission',
+        'type',
+        'fuel',
+        'price_per_day',
+        'additional_details'
     ];
 
     public function photos()
@@ -57,6 +61,15 @@ class Car extends Model
             $carPhoto = new CarPhoto();
             $carPhoto->is_cover = $isCover;
             $carPhoto->name = time() . $uploadedImg->getClientOriginalName();
+
+            // if we are uploading cover photo, delete old cover
+            if ($carPhoto->is_cover) {
+                foreach ($this->photos as $photo) {
+                    if ($photo->is_cover == true) {
+                        $photo->delete();
+                    }
+                }
+            }
 
             $uploadedImg->move(__DIR__ . '/../../public/car_images/', $carPhoto->name);
 
