@@ -97,7 +97,7 @@
             </div>
         </div>
 
-        @if(Auth::user()->role == 'admin')
+        @if(Auth::user() AND Auth::user()->role == 'admin')
             <a href="/rent/{{ $rent->id }}/edit" class="btn btn-primary">Edit rent info</a>
         @endif
     </div>

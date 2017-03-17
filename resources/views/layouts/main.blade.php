@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Rent And Drive</title>
+    <title>Rent a Car</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -48,9 +48,23 @@
         });
     </script>
 
+    <script>
+        // push footer to bottom
+        $(document).ready(function() {
+
+            var docHeight = $(window).height();
+            var footerHeight = $('footer').height();
+            var footerTop = $('footer').position().top + footerHeight;
+
+            if (footerTop < docHeight) {
+                $('footer').css('margin-top', (docHeight - footerTop) + 'px');
+            }
+        });
+    </script>
+
     @yield('scripts')
 </head>
-<body id="app-layout">
+<body id="page-top">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
@@ -65,7 +79,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Rent And Drive
+                    Rent a Car
                 </a>
             </div>
 
@@ -111,6 +125,47 @@
     </nav>
 
     @yield('content')
+
+    <footer>
+        <div class="container main-content">
+            <div class="row">
+                <div class="col-sm-7">
+                    <h3>Rent a Car</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus accusantium aliquam aut blanditiis debitis dolore expedita explicabo fugiat in minus necessitatibus, porro quaerat repudiandae sequi tenetur unde voluptate voluptatum.
+                    </p>
+                </div>
+
+                <div class="col-sm-2 col-sm-offset-1">
+                    <div class="links-header">Useful links</div>
+                    <ul class="links">
+                        <li><a href="/search">Car Search</a></li>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/register">Register</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <a href="#page-top" class="go-to-top">Go to the top <i class="fa fa-arrow-up"
+                                                                       aria-hidden="true"></i></a>
+                    <div class="social-media-links">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                        <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                        <i class="fa fa-google-plus-square" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="copyright">Rent a Car &copy; Luka Dolančić</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>

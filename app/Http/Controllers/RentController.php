@@ -23,6 +23,8 @@ class RentController extends Controller
 
     public function show(Rent $rent)
     {
+        $this->authorize('show', $rent);
+
         return view('rent.show', compact('rent'));
     }
 
@@ -53,13 +55,11 @@ class RentController extends Controller
 
         $rent->calculatePrice($car->price_per_day);
 
-        // do advanced validation to check if the car has another
-        // rent for our wanted date range
-        if (!$rent->validateAvailability()) {
+        // manual validation for rent dates
+        if (!$rent->dateRangeAvailable()) {
             return response('There is another rent for this car in the wanted date range.', '451');
         }
 
-        // if validation passed save the rent
         $rent->save();
 
         return redirect('/rent/' . $rent->id);
@@ -69,27 +69,20 @@ class RentController extends Controller
     {
         $data = $request->all();
 
-        foreach ($data as $item => $value) {
-            if ($value === "on") {
-                $data[$item] = true;
-            } elseif ($value === "off") {
-                $data[$item] = false;
-            }
-        }
+        $data = $this->processInput($data);
+
+        $rent->update($data);
+        $rent->status = $data['status'];
 
         $car = $rent->car;
 
         $rent->calculatePrice($car->price_per_day);
 
-        $rent->update($data);
+        // manual validation for rent dates
+        if (!$rent->dateRangeAvailable()) {
+            return response('There is another rent for this car in the wanted date range.', '451');
+        }
 
-        // do advanced validation to check if the car has another
-        // rent for our wanted date range
-        // if (!$rent->validateAvailability()) {
-        //     return response('There is another rent for this car in the wanted date range.', '451');
-        // }
-
-        // if validation passed save the rent
         $rent->save();
 
         return redirect('/rent/' . $rent->id);
@@ -100,5 +93,15 @@ class RentController extends Controller
         $trackings = CarTracking::where('rent_id', $rent->id)->get();
 
         return view('carTracking.index', compact('trackings'));
+    }
+
+    private function processInput($data)
+    {
+        $data['additional_driver'] = !isset($data['additional_driver']) ? false : true;
+        $data['baby_seat'] = !isset($data['baby_seat']) ? false : true;
+        $data['child_seat'] = !isset($data['child_seat']) ? false : true;
+        $data['full_protection'] = !isset($data['full_protection']) ? false : true;
+
+        return $data;
     }
 }

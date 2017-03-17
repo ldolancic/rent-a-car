@@ -14,4 +14,9 @@ class UserPolicy
     {
         return Auth::user()->role == 'admin' || $loggedInUser->id == $user->id;
     }
+
+    public function showRentHistory(User $loggedInUser, User $user)
+    {
+        return Auth::user()->role == 'admin' || $loggedInUser->id == $user->id;
+    }
 }

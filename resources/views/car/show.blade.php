@@ -141,7 +141,7 @@
 
                 @if($car->additional_details)
                     <div class="row">
-                        <p>{{ $car->additional_details }}</p>
+                        <p>{!! nl2br($car->additional_details) !!}</p>
                     </div>
                 @endif
 

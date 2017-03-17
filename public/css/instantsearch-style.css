@@ -6,10 +6,7 @@
 * {
 	font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
-html {
-	overflow-y: scroll;
-}
-main, #no-results, footer {
+main, #no-results {
 	width: 1200px;
 	margin: 0 auto;
 }
@@ -256,6 +253,7 @@ header img {
 	padding: 0 0 6px;
 	text-transform: uppercase;
 	border-bottom: 2px solid #eee;
+	font-size: 17px;
 }
 .facet ul {
 	margin: 0;
@@ -266,7 +264,7 @@ header img {
 	margin-bottom: 3px;
 }
 .facet-link {
-	font-size: 13px;
+	font-size: 16px;
 	line-height: 1.2;
 	text-decoration: none;
 	color: #000;
@@ -367,24 +365,4 @@ a.clear-all {
 a.clear-all:hover {
 	transition: border-color .3s ease-in;
 	border-color: #999;
-}
-
-
-
-/* FOOTER
-// ------------------------- */
-
-footer {
-	font-size: 14px;
-	margin-top: 200px;
-	margin-bottom: 24px;
-	text-align: center;
-}
-footer a {
-	text-decoration: none;
-	color: #F25F5C;
-}
-footer a:hover {
-	text-decoration: underline;
-	color: #F25F5C;
 }

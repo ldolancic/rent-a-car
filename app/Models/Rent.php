@@ -59,7 +59,7 @@ class Rent extends Model
         $this->price = $babySeatPrice + $childSeatPrice + $additionalDriverPrice + $fullProtectionPrice + $baseCarRentPrice;
     }
 
-    public function validateAvailability()
+    public function dateRangeAvailable()
     {
         // checks if there are any rents taking place
         // in our needed period for this particular car
@@ -72,9 +72,14 @@ class Rent extends Model
 
             })
             ->where('car_id', $this->car->id)
+            ->where(function($query) {
+                if ($this->id != null) {
+                    $query->where('id', '!=', $this->id);
+                }
+            })
             ->get();
 
-        // if there are no rents validation passes
+        // if there are no rents, validation passes
         if ($data->isEmpty()) {
             return true;
         }

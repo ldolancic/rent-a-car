@@ -149,6 +149,16 @@ label {
     }
 }
 
+.login-form-container {
+    padding-left: 0;
+}
+
+@media (max-width: 768px) {
+    .login-form-container {
+        padding-left: 15px;
+    }
+}
+
 .auth-panel {
     border-radius: 0;
     border-color: #50514F;
@@ -188,6 +198,7 @@ label {
 .jumbotron {
     background-image: url('/img/road4k.jpg');
     margin-top: -40px;
+    margin-bottom: 0;
     background-size: cover;
 }
 
@@ -221,15 +232,21 @@ label {
     }
 }
 
-.jumbotron .fa {
+.jumbotron .click-to-scroll-link-container .fa {
     color: rgba(255,255,255,0.8);
-    font-size: 40px;
+    font-size: 30px;
     -webkit-animation: bounce 2s infinite ease-in-out;
+}
+
+.jumbotron .fa-search {
+    display: inline-block;
+    font-size: 28px;
+    margin-left: 10px;
 }
 
 @-webkit-keyframes bounce {
     0%, 20%, 60%, 100%  { -webkit-transform: translateY(0); }
-    40%  { -webkit-transform: translateY(-20px); }
+    40%  { -webkit-transform: translateY(-15px); }
     80% { -webkit-transform: translateY(-10px); }
 }
 
@@ -240,10 +257,46 @@ label {
     text-decoration: none;
     display: block;
 }
+
+.jumbotron .btn-huge {
+    margin-top: 20%;
+    font-size: 20px;
+    padding: 12px 54px;
+}
+
+@media (max-width: 768px) {
+    .jumbotron .fa-search {
+        font-size: 20px;
+    }
+
+    .jumbotron .btn-huge {
+        margin-top: 10%;
+        font-size: 16px;
+        padding: 12px 54px;
+    }
+}
+
 .backgrounded-content {
     background-color: rgba(255,255,255,0.6);
     padding: 10px 20px;
     margin-top: 5%;
+}
+
+@media (max-width: 768px) {
+    .backgrounded-content {
+        padding: 1px 15px;
+        margin-top: 0;
+    }
+
+    .backgrounded-content h2 {
+        font-size: 25px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+
+    .backgrounded-content p {
+        font-size: 18px;
+    }
 }
 
 .click-to-scroll,
@@ -251,9 +304,71 @@ label {
 .click-to-scroll:active,
 .click-to-scroll:focus,
 .click-to-scroll:focus:active {
-    color: #fff;
+    color: rgba(255,255,255,0.9);
     font-size: 18px;
     text-transform: uppercase;
     font-weight: 700;
     margin-bottom: 10px;
+}
+
+#naslov-container {
+    padding-top: 30px;
+}
+
+footer {
+    background-color: #50514F;
+    margin-top: 20px;
+    color: #fff;
+}
+
+footer p.copyright {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+footer .copyright-container {
+    background-color: #F25F5C;
+}
+
+footer .main-content {
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+footer .links-header {
+    font-size: 20px;
+    margin: 20px 0 10px;
+}
+
+footer .links {
+    padding-left: 0;
+    list-style: none;
+}
+
+footer .links a,
+footer .links a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer .go-to-top,
+footer .go-to-top:hover {
+    color: #fff;
+    display: block;
+    margin: 20px 0 10px;
+    text-decoration: none;
+}
+
+footer .go-to-top .fa {
+    margin-left: 5px;
+    font-size: 19px;
+}
+
+footer .social-media-links {
+    margin-top: 20px;
+}
+
+footer .social-media-links .fa {
+    font-size: 32px;
+    margin-right: 10px;
 }

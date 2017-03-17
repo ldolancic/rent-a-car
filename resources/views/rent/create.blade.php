@@ -56,6 +56,8 @@
     <script type="text/javascript">
         $(function() {
 
+            days = 1;
+
             var pricePerDay = {{ $car->price_per_day }};
 
             function cb(start, end) {
@@ -77,11 +79,31 @@
                 $('#starting_time').val(picker.startDate.format('YYYY-MM-DD'));
                 $('#ending_time').val(picker.endDate.format('YYYY-MM-DD'));
 
-                var days = picker.endDate.diff(picker.startDate, 'days') + 1;
-                var priceOfRent = days * pricePerDay;
+                days = picker.endDate.diff(picker.startDate, 'days') + 1;
 
-                $('#calculated_price').html(priceOfRent);
+                $('#calculated_price').html(calculatePrice());
             });
+
+            $('.checkbox input[type="checkbox"]').click(function() {
+                $('#calculated_price').html(calculatePrice());
+            });
+
+            function calculatePrice()
+            {
+                var additionalDriver = $('input[name="additional_driver"]').is(':checked');
+                var babySeat = $('input[name="baby_seat"]').is(':checked');
+                var childSeat = $('input[name="child_seat"]').is(':checked');
+                var fullProtection = $('input[name="full_protection"]').is(':checked');
+
+                var price =
+                        additionalDriver * 3 * days +
+                        fullProtection * 3 * days +
+                        babySeat * 2 * days +
+                        childSeat * 2 * days +
+                        days * pricePerDay;
+
+                return price;
+            }
 
         });
     </script>

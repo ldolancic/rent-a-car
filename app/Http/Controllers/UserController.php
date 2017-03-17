@@ -11,6 +11,14 @@ use App\Http\Requests;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => [
+            'edit',
+            'rentHistory'
+        ]]);
+    }
+
     public function index()
     {
         $users = User::all();
@@ -25,7 +33,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        if (! Auth::user()->can('edit', $user)) {
+        if (!Auth::user() OR !Auth::user()->can('edit', $user)) {
             return abort(403);
         }
 
@@ -34,6 +42,10 @@ class UserController extends Controller
 
     public function rentHistory(User $user)
     {
+        if (!Auth::user() OR !Auth::user()->can('showRentHistory', $user)) {
+            return abort(403);
+        }
+
         $rents = Rent::where('user_id', $user->id)->get();
 
         return view('user.rentHistory', compact(['rents', 'user']));
