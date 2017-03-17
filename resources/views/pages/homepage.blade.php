@@ -15,13 +15,44 @@
                                                                        aria-hidden="true"></i></a>
             </div>
 
-            <a href="#naslov-container" class="text-center click-to-scroll-link-container"><div class="text-center
+            <a href="#first-content-box" class="text-center click-to-scroll-link-container"><div class="text-center
             click-to-scroll">Click to scroll</div><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
         </div>
     </div>
 
-    <div class="container" id="naslov-container">
-        <h3 style="height: 1000px;">Naslov</h3>
+    <div class="home-content-box" id="first-content-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5">
+                    <img
+                            class="img-responsive pull-left placeholdit-home"
+                            src="https://placeholdit.imgix.net/~text?txtsize=45&txt=350%C3%97350&w=350&h=250"
+                            alt="Placeholder image"
+                    >
+                </div>
+                <div class="col-sm-7">
+                    <h3>Sample content</h3>
+                    <p >@include('loremIpsum/lorem100')</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="home-content-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7">
+                    <h3>Sample content</h3>
+                    <p >@include('loremIpsum/lorem100')</p>
+                </div>
+                <div class="col-sm-5">
+                    <img
+                            class="img-responsive pull-right placeholdit-home"
+                            src="https://placeholdit.imgix.net/~text?txtsize=45&txt=350%C3%97350&w=350&h=250"
+                            alt="Placeholder image">
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>

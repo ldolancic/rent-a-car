@@ -8,7 +8,7 @@
 }
 
 body {
-    font-size: 16px;
+    font-size: 18px;
     color: #50514F;
 }
 
@@ -93,6 +93,14 @@ label {
     .navbar-nav .open .dropdown-menu > li > a:hover {
         color: #fff !important;
     }
+}
+
+.home-content-box {
+    margin: 50px 0;
+}
+
+.placeholdit-home {
+    margin-top: 15px;
 }
 
 .dropdown-menu {
@@ -309,10 +317,6 @@ label {
     text-transform: uppercase;
     font-weight: 700;
     margin-bottom: 10px;
-}
-
-#naslov-container {
-    padding-top: 30px;
 }
 
 footer {
