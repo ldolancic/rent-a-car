@@ -102,63 +102,63 @@
 
   <!-- Hit template -->
   <script type="text/template" id="hit-template">
-    {{#hits}}
+    @{{#hits}}
     <div class="hit">
       <div class="hit-image">
-        <a href="/car/{{ id }}"><img src="/car_images/{{ cover_photo.name }}"></a>
+        <a href="/car/@{{ id }}"><img src="/car_images/@{{ cover_photo.name }}"></a>
       </div>
       <div class="hit-content">
-        <h3 class="hit-price">${{ price_per_day }}/day</h3>
-        <h3 class="hit-name"><a href="/car/{{ id }}">{{ brand }} {{ model }}</a></h3>
+        <h3 class="hit-price">$@{{ price_per_day }}/day</h3>
+        <h3 class="hit-name"><a href="/car/@{{ id }}">@{{ brand }} @{{ model }}</a></h3>
         <div class="hit-description">
           <div class="row">
             <div class="col-sm-4">
               <h4>Transmission</h4>
-              <p>{{ transmission }}</p>
+              <p>@{{ transmission }}</p>
             </div>
             <div class="col-sm-4">
               <h4>Vehicle Type</h4>
-              <p>{{ type }}</p>
+              <p>@{{ type }}</p>
             </div>
             <div class="col-sm-4">
               <h4>Fuel Type</h4>
-              <p>{{ fuel }}</p>
+              <p>@{{ fuel }}</p>
             </div>
           </div>
 
           <div class="row">
             <div class="col-sm-4">
               <h4>Doors</h4>
-              <p>{{ doors }}</p>
+              <p>@{{ doors }}</p>
             </div>
             <div class="col-sm-4">
               <h4>Seats</h4>
-              <p>{{ seats }}</p>
+              <p>@{{ seats }}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    {{/hits}}
+    @{{/hits}}
   </script>
 
   <!-- Stats template -->
   <script type="text/template" id="stats-template">
-    {{ nbHits }} Result{{#nbHits_plural}}s{{/nbHits_plural}} <span class="found-in">Found in {{ processingTimeMS }}ms</span>
+    @{{ nbHits }} Result@{{#nbHits_plural}}s@{{/nbHits_plural}} <span class="found-in">Found in @{{ processingTimeMS }}ms</span>
   </script>
 
   <!-- Facet template -->
   <script type="text/template" id="facet-template">
     <div class="facet">
-      <h5>{{ title }}</h5>
+      <h5>@{{ title }}</h5>
       <ul>
-        {{#values}}
+        @{{#values}}
         <li>
-          <a href="" class="facet-link toggle-refine {{#disjunctive}}facet-disjunctive{{/disjunctive}} {{#isRefined}}facet-refined{{/isRefined}}" data-facet="{{ facet }}" data-value="{{ name }}">
-            {{ name }}<span class="facet-count">{{ count }}</span>
+          <a href="" class="facet-link toggle-refine @{{#disjunctive}}facet-disjunctive@{{/disjunctive}} @{{#isRefined}}facet-refined@{{/isRefined}}" data-facet="@{{ facet }}" data-value="@{{ name }}">
+            @{{ name }}<span class="facet-count">@{{ count }}</span>
           </a>
         </li>
-        {{/values}}
+        @{{/values}}
       </ul>
     </div>
   </script>
@@ -166,32 +166,32 @@
   <!-- Slider template -->
   <script type="text/template" id="slider-template">
     <div class="facet">
-      <h5>{{ title }}</h5>
-      <input type="text" id="{{ facet }}-slider" data-min="{{ min }}" data-max="{{ max }}" data-from="{{ from }}" data-to="{{ to }}"/>
+      <h5>@{{ title }}</h5>
+      <input type="text" id="@{{ facet }}-slider" data-min="@{{ min }}" data-max="@{{ max }}" data-from="@{{ from }}" data-to="@{{ to }}"/>
     </div>
   </script>
 
   <!-- Pagination template -->
   <script type="text/template" id="pagination-template">
     <ul>
-      <li {{^prev_page}}class="disabled"{{/prev_page}}><a href="#" {{#prev_page}}class="go-to-page" data-page="{{ prev_page }}"{{/prev_page}}>&#60;</a></li>
-      {{#pages}}
-      <li class="{{#current}}active{{/current}} {{#disabled}}disabled{{/disabled}}"><a href="#" {{^disabled}} class="go-to-page" data-page="{{ number }}" {{/disabled}}>{{ number }}</a></li>
-      {{/pages}}
-      <li {{^next_page}}class="disabled"{{/next_page}}><a href="#" {{#next_page}}class="go-to-page" data-page="{{ next_page }}"{{/next_page}}>&#62;</a></li>
+      <li @{{^prev_page}}class="disabled"@{{/prev_page}}><a href="#" @{{#prev_page}}class="go-to-page" data-page="@{{ prev_page }}"@{{/prev_page}}>&#60;</a></li>
+      @{{#pages}}
+      <li class="@{{#current}}active@{{/current}} @{{#disabled}}disabled@{{/disabled}}"><a href="#" @{{^disabled}} class="go-to-page" data-page="@{{ number }}" @{{/disabled}}>@{{ number }}</a></li>
+      @{{/pages}}
+      <li @{{^next_page}}class="disabled"@{{/next_page}}><a href="#" @{{#next_page}}class="go-to-page" data-page="@{{ next_page }}"@{{/next_page}}>&#62;</a></li>
     </ul>
   </script>
 
   <!-- No-Results template -->
   <script type="text/template" id="no-results-template">
     <div id="no-results-message">
-      <p>We didnt find any results for the search <em>"{{ query }}"</em>.</p>
+      <p>We didnt find any results for the search <em>"@{{ query }}"</em>.</p>
       <ul>
-        {{#filters}}
-        <li class="{{ class }}" data-facet="{{ facet }}" data-value="{{ facet_value }}">
-          {{ label }}<span class="value">{{ label_value }}</span><a class="remove"><img src="img/remove.svg"/></a>
+        @{{#filters}}
+        <li class="@{{ class }}" data-facet="@{{ facet }}" data-value="@{{ facet_value }}">
+          @{{ label }}<span class="value">@{{ label_value }}</span><a class="remove"><img src="img/remove.svg"/></a>
         </li>
-        {{/filters}}
+        @{{/filters}}
         <br>
         <a href="" class='clear-all'>Clear all</a>
       </ul>
