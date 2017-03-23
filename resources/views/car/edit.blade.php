@@ -92,7 +92,7 @@
                 <div class="col-sm-5">
                     <div class="form-group">
                         <label for="photo">Cover photo</label>
-                        <input type="file" name="photo" id="photo" class="file">
+                        <input type="file" name="cover_photo" id="photo" class="file">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
