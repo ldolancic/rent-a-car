@@ -10,7 +10,7 @@ class RentPolicy
 {
     use HandlesAuthorization;
 
-    public function show(User $user, Rent $rent)
+    public function rentAccess(User $user, Rent $rent)
     {
         return $user->role == 'admin' || $rent->user_id == $user->id;
     }

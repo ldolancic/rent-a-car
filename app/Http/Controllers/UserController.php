@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rent;
-use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,7 +32,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        if (!Auth::user() OR !Auth::user()->can('edit', $user)) {
+        if (!Auth::user() || !Auth::user()->can('edit', $user)) {
             return abort(403);
         }
 
@@ -42,9 +41,7 @@ class UserController extends Controller
 
     public function rentHistory(User $user)
     {
-        if (!Auth::user() OR !Auth::user()->can('showRentHistory', $user)) {
-            return abort(403);
-        }
+        $this->authorize('showRentHistory', $user);
 
         $rents = Rent::where('user_id', $user->id)->get();
 

@@ -7,7 +7,6 @@ use App\Models\Rent;
 use Illuminate\Http\Request;
 use App\Models\Car;
 
-use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 
 class RentController extends Controller
@@ -19,11 +18,16 @@ class RentController extends Controller
             'edit',
             'update'
         ]]);
+
+        $this->middleware('auth', ['only' => [
+            'create',
+            'store'
+        ]]);
     }
 
     public function show(Rent $rent)
     {
-        $this->authorize('show', $rent);
+        $this->authorize('rentAccess', $rent);
 
         return view('rent.show', compact('rent'));
     }
@@ -67,9 +71,7 @@ class RentController extends Controller
 
     public function update(Rent $rent, Request $request)
     {
-        $data = $request->all();
-
-        $data = $this->processInput($data);
+        $data = $this->processInput($request->all());
 
         $rent->update($data);
         $rent->status = $data['status'];
@@ -88,7 +90,7 @@ class RentController extends Controller
         return redirect('/rent/' . $rent->id);
     }
 
-    public function carTracking(Rent $rent)
+    public function showCarTracking(Rent $rent)
     {
         $trackings = CarTracking::where('rent_id', $rent->id)->get();
 

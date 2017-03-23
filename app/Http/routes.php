@@ -27,7 +27,7 @@ Route::get('/rent/{rent}/edit', 'RentController@edit');
 Route::get('/rent/{car}/create', 'RentController@create');
 Route::post('/rent/{car}', 'RentController@store');
 Route::patch('/rent/{rent}', 'RentController@update');
-Route::get('/rent/{rent}/car-tracking', 'RentController@carTracking');
+Route::get('/rent/{rent}/car-tracking', 'RentController@showCarTracking');
 
 Route::get('/user', 'UserController@index');
 Route::get('/user/{user}', 'UserController@show');

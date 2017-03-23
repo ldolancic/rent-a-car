@@ -17,7 +17,7 @@ class Admin
     public function handle($request, Closure $next)
     {
         if (Auth::user() == null || Auth::user()->role != 'admin') {
-            return response('Unauthorized.', 403);
+            return view('errors.403');
         }
 
         return $next($request);
