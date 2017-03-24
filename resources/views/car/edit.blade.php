@@ -1,10 +1,17 @@
 @extends('layouts.main')
 
+@section('scripts')
+    <script src="/js/dropzone.js"></script>
+@endsection
+
+@section('styles')
+    <link rel="stylesheet" href="/css/dropzone.css">
+@endsection
+
 @section('content')
     <div class="container">
 
         <h3>Edit a car</h3>
-
 
         <form method="post" action="{{ route('car.update', ['id' => $car->id]) }}" enctype="multipart/form-data">
             {{ csrf_field() }}
@@ -99,6 +106,43 @@
                 </div>
             </div>
         </form>
+
+        <br>
+
+        <div class="row">
+            <div id="car-images-grid" class="grid">
+                @foreach($car->nonCoverPhotos() as $photo)
+                    <div class="col-sm-6 grid-image">
+                        <img src="/car_images/{{ $photo->name }}"
+                             class="img-responsive"
+                             style="margin-bottom: 20px;"
+                        >
+                        <a href="/car/photo/{{ $photo->id }}/delete" class="delete-image">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <form action="/car/{{ $car->id }}/upload-photo"
+                      method="POST"
+                      class="dropzone"
+                      id="dropzone">
+                    {{ csrf_field() }}
+                </form>
+
+                <script>
+                    Dropzone.options.dropzone = {
+                        paramName: "additional_photo", // The name that will be used to transfer the file
+                        maxFilesize: 2 // MB
+                    };
+                </script>
+            </div>
+        </div>
 
     </div>
 @stop

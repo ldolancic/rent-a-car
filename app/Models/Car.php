@@ -53,13 +53,14 @@ class Car extends Model
         return $this->photos()->where('is_cover', false)->get();
     }
 
-    public function photoUpload($request, $fieldName = 'photo', $isCover = false)
+    public function photoUpload($request, $fieldName = 'additional_photo')
     {
         $uploadedImg = $request->file($fieldName);
 
         if($uploadedImg) {
             $carPhoto = new CarPhoto();
-            $carPhoto->is_cover = $isCover;
+
+            $carPhoto->is_cover = $fieldName == 'cover_photo' ? true : false;
             $carPhoto->name = time() . $uploadedImg->getClientOriginalName();
 
             // if we are uploading a cover photo, delete the old cover photo

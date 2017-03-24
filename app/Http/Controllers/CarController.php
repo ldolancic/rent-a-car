@@ -56,7 +56,7 @@ class CarController extends Controller
     {
         $car->update($request->all());
 
-        $car->photoUpload($request, 'cover_photo', true);
+        $car->photoUpload($request, 'cover_photo');
 
         $car->pushToIndex();
 
@@ -67,7 +67,7 @@ class CarController extends Controller
     {
         $car = Car::create($request->all());
 
-        $car->photoUpload($request, 'cover_photo', true);
+        $car->photoUpload($request, 'cover_photo');
 
         $car->pushToIndex();
 
@@ -76,7 +76,7 @@ class CarController extends Controller
 
     public function uploadPhoto(Request $request, Car $car)
     {
-        $car->photoUpload($request, 'photo', false);
+        $car->photoUpload($request, 'additional_photo');
 
         return 'success';
     }

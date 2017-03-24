@@ -105,7 +105,7 @@
                     @elseif(!Auth::user())
                         <div class="row">
                             <div class="col-sm-6">
-                                <a href="/login" class="btn btn-success">Log in to rent this
+                                <a href="/rent/{{ $car->id }}/create" class="btn btn-success">Log in to rent this
                                     car</a>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                                      class="img-responsive"
                                      style="margin-bottom: 20px;"
                                 >
-                                <a href="/car/photo/{{ $photo->id }}" class="delete-image">
+                                <a href="/car/photo/{{ $photo->id }}/delete" class="delete-image">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -156,7 +156,7 @@
 
                         <script>
                             Dropzone.options.dropzone = {
-                                paramName: "photo", // The name that will be used to transfer the file
+                                paramName: "additional_photo", // The name that will be used to transfer the file
                                 maxFilesize: 2 // MB
                             };
                         </script>
