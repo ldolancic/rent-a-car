@@ -8,8 +8,8 @@
     <style>
         .grid { width: 100%; }
         .grid-sizer,
-        .grid-item { width: 49%; margin-bottom: 10px; }
-        .gutter-sizer { width: 2%; }
+        .grid-item { width: 33%; margin-bottom: 10px; }
+        .gutter-sizer { width: 0.33%; }
     </style>
 @endsection
 
@@ -129,41 +129,49 @@
 
             <div class="col-sm-6">
 
-                <div class="grid" id="images-grid">
-
-                    <div class="grid-sizer"></div>
-                    <div class="gutter-sizer"></div>
-
-                    @foreach($car->nonCoverPhotos() as $photo)
-                        <div class="grid-item grid-image">
-                            <img src="/car_images/{{ $photo->name }}"
-                                 class="img-responsive"
-                            >
-                        </div>
-                    @endforeach
-                </div>
-
-                <script>
-                    var $grid = new Masonry('.grid', {
-                        // set itemSelector so .grid-sizer is not used in layout
-                        itemSelector: '.grid-item',
-                        // use element for option
-                        columnWidth: '.grid-sizer',
-                        gutter: '.gutter-sizer',
-                        percentPosition: true,
-                    });
-
-                    setTimeout(function() {
-                        $grid.layout();
-                    }, 100);
-                </script>
-
                 @if($car->additional_details)
                     <h3>Additional details</h3>
                     <p>{!! nl2br($car->additional_details) !!}</p>
                 @endif
 
             </div><!-- ending col-sm-6 whole right side -->
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <br><br>
+            <h2>Gallery</h2>
+
+            <div class="grid" id="images-grid">
+
+                <div class="grid-sizer"></div>
+                <div class="gutter-sizer"></div>
+
+                @foreach($car->nonCoverPhotos() as $photo)
+                    <div class="grid-item grid-image">
+                        <img src="/car_images/{{ $photo->name }}"
+                             class="img-responsive"
+                        >
+                    </div>
+                @endforeach
+            </div>
+
+            <script>
+                var $grid = new Masonry('.grid', {
+                    // set itemSelector so .grid-sizer is not used in layout
+                    itemSelector: '.grid-item',
+                    // use element for option
+                    columnWidth: '.grid-sizer',
+                    gutter: '.gutter-sizer',
+                    percentPosition: true,
+                });
+
+                setTimeout(function() {
+                    $grid.layout();
+                }, 100);
+            </script>
+            </div>
         </div>
     </div>
 @stop
