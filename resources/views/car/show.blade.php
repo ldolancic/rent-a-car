@@ -1,11 +1,16 @@
 @extends('layouts.main')
 
 @section('scripts')
-    <script src="/js/dropzone.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4.1.1/dist/masonry.pkgd.min.js"></script>
 @endsection
 
 @section('styles')
-    <link rel="stylesheet" href="/css/dropzone.css">
+    <style>
+        .grid { width: 100%; }
+        .grid-sizer,
+        .grid-item { width: 49%; margin-bottom: 10px; }
+        .gutter-sizer { width: 2%; }
+    </style>
 @endsection
 
 @section('content')
@@ -123,45 +128,41 @@
             </div><!-- ending col-sm-6 whole left side -->
 
             <div class="col-sm-6">
-                <div class="row">
-                    <div id="car-images-grid" class="grid">
-                        @foreach($car->nonCoverPhotos() as $photo)
-                            <div class="col-sm-6 grid-image">
-                                <img src="/car_images/{{ $photo->name }}"
-                                     class="img-responsive"
-                                     style="margin-bottom: 20px;"
-                                >
-                                <a href="/car/photo/{{ $photo->id }}/delete" class="delete-image">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        @endforeach
-                    </div>
+
+                <div class="grid" id="images-grid">
+
+                    <div class="grid-sizer"></div>
+                    <div class="gutter-sizer"></div>
+
+                    @foreach($car->nonCoverPhotos() as $photo)
+                        <div class="grid-item grid-image">
+                            <img src="/car_images/{{ $photo->name }}"
+                                 class="img-responsive"
+                            >
+                        </div>
+                    @endforeach
                 </div>
+
+                <script>
+                    var $grid = new Masonry('.grid', {
+                        // set itemSelector so .grid-sizer is not used in layout
+                        itemSelector: '.grid-item',
+                        // use element for option
+                        columnWidth: '.grid-sizer',
+                        gutter: '.gutter-sizer',
+                        percentPosition: true,
+                    });
+
+                    setTimeout(function() {
+                        $grid.layout();
+                    }, 100);
+                </script>
 
                 @if($car->additional_details)
-                    <div class="row">
-                        <p>{!! nl2br($car->additional_details) !!}</p>
-                    </div>
+                    <h3>Additional details</h3>
+                    <p>{!! nl2br($car->additional_details) !!}</p>
                 @endif
 
-                <div class="row">
-                    @if(Auth::user() and Auth::user()->role == 'admin')
-                        <form action="/car/{{ $car->id }}/upload-photo"
-                              method="POST"
-                              class="dropzone"
-                              id="dropzone">
-                            {{ csrf_field() }}
-                        </form>
-
-                        <script>
-                            Dropzone.options.dropzone = {
-                                paramName: "additional_photo", // The name that will be used to transfer the file
-                                maxFilesize: 2 // MB
-                            };
-                        </script>
-                    @endif
-                </div>
             </div><!-- ending col-sm-6 whole right side -->
         </div>
     </div>

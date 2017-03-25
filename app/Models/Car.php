@@ -75,6 +75,8 @@ class Car extends Model
             $uploadedImg->move(__DIR__ . '/../../public/car_images/', $carPhoto->name);
 
             $this->photos()->save($carPhoto);
+
+            return $carPhoto;
         }
     }
 }

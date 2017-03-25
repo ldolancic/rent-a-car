@@ -2,10 +2,16 @@
 
 @section('scripts')
     <script src="/js/dropzone.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4.1.1/dist/masonry.pkgd.min.js"></script>
 @endsection
 
 @section('styles')
     <link rel="stylesheet" href="/css/dropzone.css">
+    <style>
+        .grid { width: 60%; }
+        .grid-sizer,
+        .grid-item { width: 50%; }
+    </style>
 @endsection
 
 @section('content')
@@ -109,40 +115,96 @@
 
         <br>
 
-        <div class="row">
-            <div id="car-images-grid" class="grid">
-                @foreach($car->nonCoverPhotos() as $photo)
-                    <div class="col-sm-6 grid-image">
-                        <img src="/car_images/{{ $photo->name }}"
-                             class="img-responsive"
-                             style="margin-bottom: 20px;"
-                        >
-                        <a href="/car/photo/{{ $photo->id }}/delete" class="delete-image">
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                @endforeach
-            </div>
+        <h3>Additional car images</h3>
+
+        <p>Car images added here show up on a single-car public page in a grid.</p>
+
+        <div class="grid" id="images-grid" style="margin-bottom: 20px; float: left;">
+
+            <div class="grid-sizer"></div>
+
+            @foreach($car->nonCoverPhotos() as $photo)
+                <div class="grid-item grid-image">
+                    <img src="/car_images/{{ $photo->name }}"
+                         class="img-responsive"
+                    >
+                    <a href="#" delete-link="/car/photo/{{ $photo->id }}" class="delete-image">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </a>
+                </div>
+            @endforeach
         </div>
 
+        <form action="/car/{{ $car->id }}/upload-photo"
+              method="POST"
+              class="dropzone"
+              id="dropzone"
+              style="width: 35%; float: right;"
+        >
+            {{ csrf_field() }}
+        </form>
 
-        <div class="row">
-            <div class="col-sm-6">
-                <form action="/car/{{ $car->id }}/upload-photo"
-                      method="POST"
-                      class="dropzone"
-                      id="dropzone">
-                    {{ csrf_field() }}
-                </form>
+        <script>
 
-                <script>
-                    Dropzone.options.dropzone = {
-                        paramName: "additional_photo", // The name that will be used to transfer the file
-                        maxFilesize: 2 // MB
-                    };
-                </script>
-            </div>
-        </div>
+            function generateNew(photoId, photoName)
+            {
+                return '<div class="grid-item grid-image">' +
+                '<img src="/car_images/' + photoName + '"' +
+                'class="img-responsive">' +
+                '<a href="#" delete-link="/car/photo/' + photoId + '" class="delete-image">' +
+                '<i class="fa fa-times" aria-hidden="true"></i></a></div>';
+            }
+
+            var $grid = new Masonry('.grid', {
+                // set itemSelector so .grid-sizer is not used in layout
+                itemSelector: '.grid-item',
+                // use element for option
+                columnWidth: '.grid-sizer',
+                percentPosition: true,
+            });
+
+            Dropzone.options.dropzone = {
+                paramName: "additional_photo", // The name that will be used to transfer the file
+                maxFilesize: 2, // MB
+                init: function() {
+                    this.on("success", function(file, response) {
+                        var newPhoto = $(generateNew(response.photo_id, response.photo_name));
+                        $('#images-grid').append(newPhoto);
+
+                        $grid.appended(newPhoto);
+                        $grid.layout();
+
+                        // blasphemy, I know :/
+                        // strange bug, won't refresh the layout right away
+                        setTimeout(function(){
+                            $grid.layout();
+                        }, 100);
+                    });
+                }
+            };
+
+            $('#images-grid').on('click', '.delete-image', function(event){
+                event.preventDefault();
+
+                var deleteUrl = $(this).attr('delete-link');
+                var clickedBtn = this;
+
+                $.ajax({
+                    url: deleteUrl,
+                    type: 'POST',
+                    data: {
+                        '_method': 'DELETE',
+                        '_token' : '{{ csrf_token() }}'
+                    },
+                    success: function(result) {
+                        $(clickedBtn).parent().fadeOut(300, function() {
+                            $(this).remove();
+                            $grid.layout();
+                        });
+                    }
+                });
+            });
+        </script>
 
     </div>
 @stop

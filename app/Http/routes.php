@@ -19,7 +19,7 @@ Route::get('/search', 'CarController@search');
 Route::get('/car/{car}/rent-history', 'CarController@rentHistory');
 Route::post('/car/{car}/upload-photo', 'CarController@uploadPhoto');
 Route::post('/car/{car}/store-cover-photo', 'CarController@storeCoverPhoto');
-Route::get('/car/photo/{carPhoto}/delete', 'CarController@deletePhoto');
+Route::delete('/car/photo/{carPhoto}', 'CarController@deletePhoto');
 Route::resource('car', 'CarController');
 
 Route::get('/rent/{rent}', 'RentController@show');

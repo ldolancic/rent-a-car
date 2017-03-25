@@ -76,9 +76,12 @@ class CarController extends Controller
 
     public function uploadPhoto(Request $request, Car $car)
     {
-        $car->photoUpload($request, 'additional_photo');
+        $photo = $car->photoUpload($request, 'additional_photo');
 
-        return 'success';
+        return [
+            'photo_id' => $photo->id,
+            'photo_name' => $photo->name
+        ];
     }
 
     public function deletePhoto(CarPhoto $carPhoto)
