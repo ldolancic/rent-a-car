@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.public')
 
 @section('scripts')
     <script src="https://unpkg.com/masonry-layout@4.1.1/dist/masonry.pkgd.min.js"></script>

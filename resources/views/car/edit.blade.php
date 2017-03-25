@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.public')
 
 @section('scripts')
     <script src="/js/dropzone.js"></script>
