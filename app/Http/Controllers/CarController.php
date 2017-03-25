@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\CarPhoto;
 use App\Http\Requests\CarRequest;
 use Illuminate\Http\Request;
-use App\Models\CarPhoto;
 
 class CarController extends Controller
 {
