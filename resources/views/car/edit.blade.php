@@ -8,9 +8,10 @@
 @section('styles')
     <link rel="stylesheet" href="/css/dropzone.css">
     <style>
-        .grid { width: 60%; }
+        .grid { width: 100%; }
         .grid-sizer,
-        .grid-item { width: 50%; }
+        .grid-item { width: 33%; margin-bottom: 10px; }
+        .gutter-sizer { width: 0.33%; }
     </style>
 @endsection
 
@@ -122,6 +123,7 @@
         <div class="grid" id="images-grid" style="margin-bottom: 20px; float: left;">
 
             <div class="grid-sizer"></div>
+            <div class="gutter-sizer"></div>
 
             @foreach($car->nonCoverPhotos() as $photo)
                 <div class="grid-item grid-image">
@@ -137,9 +139,8 @@
 
         <form action="/car/{{ $car->id }}/upload-photo"
               method="POST"
-              class="dropzone"
+              class="dropzone col-sm-12"
               id="dropzone"
-              style="width: 35%; float: right;"
         >
             {{ csrf_field() }}
         </form>
@@ -160,6 +161,7 @@
                 itemSelector: '.grid-item',
                 // use element for option
                 columnWidth: '.grid-sizer',
+                gutter: '.gutter-sizer',
                 percentPosition: true,
             });
 

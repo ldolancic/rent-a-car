@@ -14,7 +14,6 @@ class RentController extends Controller
     public function __construct()
     {
         $this->middleware('admin', ['only' => [
-            'carTracking',
             'edit',
             'update'
         ]]);
@@ -88,13 +87,6 @@ class RentController extends Controller
         $rent->save();
 
         return redirect('/rent/' . $rent->id);
-    }
-
-    public function showCarTracking(Rent $rent)
-    {
-        $trackings = CarTracking::where('rent_id', $rent->id)->get();
-
-        return view('carTracking.index', compact('trackings'));
     }
 
     private function processInput($data)

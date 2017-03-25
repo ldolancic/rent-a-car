@@ -116,12 +116,19 @@
                         </div>
                     @elseif(Auth::user() and Auth::user()->role == 'admin')
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
                                 <a href="/car/{{ $car->id }}/rent-history" class="btn btn-primary">View rent history</a>
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
                                 <a href="/car/{{ $car->id }}/edit" class="btn btn-danger">Edit car info</a>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <a href="/car-tracking/{{ $car->id }}" class="btn btn-success">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    Track it
+                                </a>
                             </div>
                         </div>
                     @endif
@@ -140,7 +147,9 @@
         <div class="row">
             <div class="col-sm-12">
 
-                <br><br>
+            <br><br>
+            <hr>
+
             <h2>Gallery</h2>
 
             <div class="grid" id="images-grid">
