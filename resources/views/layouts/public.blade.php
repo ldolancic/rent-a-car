@@ -31,7 +31,6 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
     <script type="text/javascript" src="/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="/js/dataTables.bootstrap.min.js"></script>
-    <script src="/js/vue.js"></script>
 
     <script>
         // smooth scroll

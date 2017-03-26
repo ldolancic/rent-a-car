@@ -23,6 +23,7 @@ class CreateCarsTable extends Migration
             $table->integer('doors');
             $table->double('price_per_day');
             $table->text('additional_details');
+//            $table->string('api_token');
             $table->timestamps();
         });
     }

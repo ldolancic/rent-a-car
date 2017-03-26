@@ -5,7 +5,7 @@
 
         <h3>Create a car</h3>
 
-        <form method="post" action="{{ route('car.store') }}" enctype="multipart/form-data">
+        <form method="post" action="/car" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="row">
             <div class="col-sm-6">

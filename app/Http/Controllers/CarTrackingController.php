@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CarTrackingAdded;
 use App\Models\Car;
 use App\Models\CarTracking;
 use Illuminate\Http\Request;
@@ -25,9 +26,11 @@ class CarTrackingController extends Controller
 
     public function store(Request $request)
     {
-        CarTracking::create($request->all());
+        $tracking = CarTracking::create($request->all());
 
-        return 'success';
+        event(new CarTrackingAdded($tracking));
+
+        return ['status' => 'success'];
     }
 
     public function rent(Rent $rent)

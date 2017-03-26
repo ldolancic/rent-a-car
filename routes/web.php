@@ -34,6 +34,16 @@ Route::get('/user/{user}/edit', 'UserController@edit');
 Route::put('/user/{user}', 'UserController@update');
 Route::get('/user/{user}/rent-history', 'UserController@rentHistory');
 
-Route::post('/car-tracking', 'CarTrackingController@store');
 Route::get('/rent/{rent}/car-tracking', 'CarTrackingController@rent');
 Route::get('/car-tracking/{car}', 'CarTrackingController@show');
+
+Route::post('/pusher/auth', function() {
+
+    if (Auth::user()) {
+        $pusher = new \Pusher(env('PUSHER_APP_KEY'), env('PUSHER_APP_SECRET'), env('PUSHER_APP_ID'));
+
+        return $pusher->socket_auth($_POST['channel_name'], $_POST['socket_id']);
+    } else {
+        return new \Illuminate\Http\Response('',403);
+    }
+});

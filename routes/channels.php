@@ -11,6 +11,6 @@
 |
 */
 
-Broadcast::channel('App.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+Broadcast::channel('car-tracking-channel-{carId}', function ($user, $carId) {
+    return $user->role === 'admin';
 });

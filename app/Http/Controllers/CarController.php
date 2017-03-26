@@ -52,7 +52,7 @@ class CarController extends Controller
         return view('car.search');
     }
 
-    public function update(CarRequest $request, Car $car)
+    public function update(Request $request, Car $car)
     {
         $car->update($request->all());
 
