@@ -144,43 +144,45 @@
             </div><!-- ending col-sm-6 whole right side -->
         </div>
 
-        <div class="row">
-            <div class="col-sm-12">
+        @if($car->nonCoverPhotos()->first())
+            <div class="row">
+                <div class="col-sm-12">
 
-            <br><br>
-            <hr>
+                <br><br>
+                <hr>
 
-            <h2>Gallery</h2>
+                <h2>Gallery</h2>
 
-            <div class="grid" id="images-grid">
+                <div class="grid" id="images-grid">
 
-                <div class="grid-sizer"></div>
-                <div class="gutter-sizer"></div>
+                    <div class="grid-sizer"></div>
+                    <div class="gutter-sizer"></div>
 
-                @foreach($car->nonCoverPhotos() as $photo)
-                    <div class="grid-item grid-image">
-                        <img src="/car_images/{{ $photo->name }}"
-                             class="img-responsive"
-                        >
-                    </div>
-                @endforeach
+                    @foreach($car->nonCoverPhotos() as $photo)
+                        <div class="grid-item grid-image">
+                            <img src="/car_images/{{ $photo->name }}"
+                                 class="img-responsive"
+                            >
+                        </div>
+                    @endforeach
+                </div>
+
+                <script>
+                    var $grid = new Masonry('.grid', {
+                        // set itemSelector so .grid-sizer is not used in layout
+                        itemSelector: '.grid-item',
+                        // use element for option
+                        columnWidth: '.grid-sizer',
+                        gutter: '.gutter-sizer',
+                        percentPosition: true,
+                    });
+
+                    setTimeout(function() {
+                        $grid.layout();
+                    }, 100);
+                </script>
+                </div>
             </div>
-
-            <script>
-                var $grid = new Masonry('.grid', {
-                    // set itemSelector so .grid-sizer is not used in layout
-                    itemSelector: '.grid-item',
-                    // use element for option
-                    columnWidth: '.grid-sizer',
-                    gutter: '.gutter-sizer',
-                    percentPosition: true,
-                });
-
-                setTimeout(function() {
-                    $grid.layout();
-                }, 100);
-            </script>
-            </div>
-        </div>
+        @endif
     </div>
 @stop

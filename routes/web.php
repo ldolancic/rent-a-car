@@ -22,6 +22,7 @@ Route::post('/car/{car}/store-cover-photo', 'CarController@storeCoverPhoto');
 Route::delete('/car/photo/{carPhoto}', 'CarController@deletePhoto');
 Route::resource('car', 'CarController');
 
+
 Route::get('/rent/{rent}', 'RentController@show');
 Route::get('/rent/{rent}/edit', 'RentController@edit');
 Route::get('/rent/{car}/create', 'RentController@create');

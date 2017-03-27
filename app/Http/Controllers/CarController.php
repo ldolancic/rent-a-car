@@ -58,8 +58,6 @@ class CarController extends Controller
 
         $car->photoUpload($request, 'cover_photo');
 
-        $car->pushToIndex();
-
         return redirect('/car/' . $car->id);
     }
 
@@ -68,8 +66,6 @@ class CarController extends Controller
         $car = Car::create($request->all());
 
         $car->photoUpload($request, 'cover_photo');
-
-        $car->pushToIndex();
 
         return redirect('/car/' . $car->id);
     }
@@ -92,5 +88,4 @@ class CarController extends Controller
 
         return redirect('/car/'. $carId);
     }
-
 }
