@@ -11,26 +11,39 @@
     <title>Rent a Car</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
+    {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">--}}
+    {{--<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>--}}
+    {{--<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900" rel="stylesheet">--}}
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
-    <link rel="stylesheet" type="text/css" href="/css/dataTables.bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/custom.css">
+    {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">--}}
+    {{--<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />--}}
+    {{--<link rel="stylesheet" type="text/css" href="/css/dataTables.bootstrap.min.css"/>--}}
+    {{--<link rel="stylesheet" href="/css/custom.css">--}}
+
+    <link href="{{ elixir('css/public.css') }}" rel="stylesheet">
 
     @yield('styles')
 
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+
 
     <!-- Bootstrap JavaScript and jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-    <script type="text/javascript" src="/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="/js/dataTables.bootstrap.min.js"></script>
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>--}}
+    {{--<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>--}}
+    {{--<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>--}}
+    {{--<script type="text/javascript" src="/js/jquery.dataTables.js"></script>--}}
+    {{--<script type="text/javascript" src="/js/dataTables.bootstrap.min.js"></script>--}}
+
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
+
+    <script type="text/javascript" src="{{ elixir('js/main.js') }}"></script>
+
+
 
     <script>
         // smooth scroll
@@ -61,12 +74,6 @@
                 $('footer').css('margin-top', (docHeight - footerTop) + 'px');
             }
         });
-    </script>
-
-    <script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-        ]) !!};
     </script>
 
     @yield('scripts')
