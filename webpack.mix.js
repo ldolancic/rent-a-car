@@ -12,12 +12,14 @@ const { mix } = require('laravel-mix');
  */
 
 mix.js([
-    'resources/assets/js/app.js',
+    'resources/assets/js/bootstrap.js',
     'resources/assets/js/libs/bootstrap.min.js',
     'resources/assets/js/libs/daterangepicker.js',
     'resources/assets/js/libs/jquery.dataTables.js',
     'resources/assets/js/libs/dataTables.bootstrap.min.js',
-], 'public/js/main.js')
+    'resources/assets/js/customScripts/smoothScroll.js',
+    'resources/assets/js/customScripts/footerRelocate.js'
+], 'public/js/libs.js')
     // .sass('resources/assets/sass/app.scss', 'public/css/sas.css')
    .styles([
        'resources/assets/css/libs/font-awesome.min.css',
@@ -27,4 +29,7 @@ mix.js([
        'resources/assets/css/libs/dropzone.css',
        'resources/assets/css/libs/sweetalert.css',
        'resources/assets/css/custom.css'
-   ], 'public/css/public.css');
+   ], 'public/css/public.css')
+    .version();
+
+
